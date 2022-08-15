@@ -1,0 +1,13 @@
+<div @stagger class="py-4">
+  <p @fadeInUp class="text-secondary text-xs font-medium px-gutter mb-2">BROWSE</p>
+  <vex-mail-sidenav-link (click)="closeDrawer()"
+                         *ngFor="let link of links"
+                         @fadeInUp
+                         [link]="link"></vex-mail-sidenav-link>
+
+  <p @fadeInUp class="text-secondary text-xs font-medium px-gutter mt-8 mb-2">LABELS</p>
+  <vex-mail-sidenav-link (click)="closeDrawer()"
+                         *ngFor="let link of labelLinks"
+                         @fadeInUp
+                         [link]="link"></vex-mail-sidenav-link>
+</div>

@@ -1,0 +1,19 @@
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+.body{
+  padding: 15px;
+}
+.formGroupHeader{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.formGroupInput{
+  display:flex;
+  flex-direction: row;
+}
+.formSpace{
+  padding-left: 10px;
+}

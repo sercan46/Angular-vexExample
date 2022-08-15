@@ -1,0 +1,25 @@
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
+import { PageLayoutSimpleComponent } from './page-layout-simple.component';
+
+describe('PageLayoutSimpleComponent', () => {
+  let component: PageLayoutSimpleComponent;
+  let fixture: ComponentFixture<PageLayoutSimpleComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [PageLayoutSimpleComponent]
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PageLayoutSimpleComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

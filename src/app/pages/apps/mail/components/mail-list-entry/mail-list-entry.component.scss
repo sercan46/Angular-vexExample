@@ -1,0 +1,8 @@
+
+a.active {
+  @apply bg-primary-light;
+}
+
+a:not(.active):hover {
+  @apply bg-hover;
+}

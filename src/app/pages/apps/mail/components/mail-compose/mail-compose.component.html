@@ -1,0 +1,76 @@
+<div class="flex items-center" mat-dialog-title>
+  <p class="flex-auto text-lg font-medium">New Message</p>
+  <button mat-dialog-close mat-icon-button type="button">
+    <mat-icon [icIcon]="icClose" size="24px"></mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="block w-full">
+    <mat-label>To</mat-label>
+    <input cdkFocusInitial matInput type="text"/>
+
+    <button (click)="toggleDropdown()" class="-top-2" color="primary" mat-button matSuffix type="button">CC/BCC</button>
+  </mat-form-field>
+
+  <div [@dropdown]="dropdownOpen" class="overflow-hidden">
+    <mat-form-field appearance="outline" class="block w-full">
+      <mat-label>Cc</mat-label>
+      <input matInput type="text"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="block w-full">
+      <mat-label>Bcc</mat-label>
+      <input matInput type="text"/>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" class="block w-full">
+    <mat-label>Subject</mat-label>
+    <input matInput type="text"/>
+  </mat-form-field>
+
+  <div class="vex-mail-compose-editor flex flex-col">
+    <quill-editor [styles]="{ flex: '1 1 auto', display: 'flex', 'flex-direction': 'column' }"
+                  class="flex-auto flex flex-col"></quill-editor>
+  </div>
+
+  <div class="vex-mail-compose-attachment mt-4 mb-2 rounded-full border px-4 py-1 flex items-center hover:bg-hover transition duration-200 ease-in-out cursor-pointer relative"
+       matRipple>
+    <ic-icon [icon]="icPictureAsPdf" class="flex-none text-primary" size="18px"></ic-icon>
+    <p class="flex-auto ml-4 text-sm">super-secret-design-document.pdf</p>
+
+    <p class="text-sm text-secondary mr-2 flex-none">54kb</p>
+    <button (click)="$event?.stopPropagation()" class="flex-none w-8 h-8 leading-none" mat-icon-button type="button">
+      <mat-icon [icIcon]="icClose" size="18px"></mat-icon>
+    </button>
+  </div>
+
+  <div class="vex-mail-compose-attachment my-2 rounded-full border px-4 py-1 flex items-center hover:bg-hover transition duration-200 ease-in-out cursor-pointer relative"
+       matRipple>
+    <ic-icon [icon]="icImage" class="flex-none text-primary" size="18px"></ic-icon>
+    <p class="flex-auto ml-4 text-sm">cute-cat-picture.jpg</p>
+
+    <p class="text-sm text-secondary mr-2 flex-none">16kb</p>
+    <button (click)="$event?.stopPropagation()" class="flex-none w-8 h-8 leading-none" mat-icon-button type="button">
+      <mat-icon [icIcon]="icClose" size="18px"></mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button color="warn" mat-dialog-close mat-icon-button matTooltip="Discard Draft" type="button">
+    <mat-icon [icIcon]="icDelete" size="24px"></mat-icon>
+  </button>
+
+  <span class="flex-1"></span>
+
+  <button mat-icon-button matTooltip="Attach File" type="button">
+    <mat-icon [icIcon]="icAttachFile" size="24px"></mat-icon>
+  </button>
+
+  <button (click)="submit()" color="primary" mat-flat-button type="button">
+    <span>SEND</span>
+    <ic-icon [icIcon]="icSend" [inline]="true" class="ml-2" size="16px"></ic-icon>
+  </button>
+</mat-dialog-actions>

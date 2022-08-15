@@ -1,0 +1,69 @@
+<div class="body">
+  <mat-card class="formGroupHeader">
+    <form class="form" [formGroup]="filterForm">
+      <div class="formGroupInput">
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Hisse Seçiniz</mat-label>
+            <mat-select formControlName="shareControl">
+              <mat-option *ngFor="let share of shareData" [value]="share">
+                {{share}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="formSpace">
+          <mat-form-field appearance="fill">
+            <mat-label>Tarih Aralığı Giriniz</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Başlangıç Tarihi" formControlName="startDateControl">
+              <input matEndDate placeholder="Bitiş Tarihi" formControlName="endDateControl">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </div>
+        <div class="formSpace">
+          <mat-form-field appearance="fill">
+            <mat-label>Period Seçiniz</mat-label>
+            <mat-select formControlName="intervalControl">
+              <mat-option *ngFor="let period of periodData" [value]="period">
+                {{period}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <div>
+      <button style="border-radius: 20px" mat-raised-button color="primary" (click)="getShare()">Göster</button>
+    </div>
+  </mat-card>
+
+  <div style="padding-top: 20px" *ngIf="showChartLine==true">
+    <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+    </fusioncharts>
+  </div>
+
+  <div style="padding-top: 20px" *ngIf="dataSourceTable.length>0">
+    <table mat-table [dataSource]="dataSourceTable" style="width: 100%">
+      <ng-container matColumnDef="share">
+        <th mat-header-cell *matHeaderCellDef style="font-weight:bold"> Hisse Adı </th>
+        <td mat-cell *matCellDef="let element"> {{element.share}} </td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef style="font-weight:bold"> Period </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="open">
+        <th mat-header-cell *matHeaderCellDef style="font-weight:bold"> Değer </th>
+        <td mat-cell *matCellDef="let element"> {{element.open}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
