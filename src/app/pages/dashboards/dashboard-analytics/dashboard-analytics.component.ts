@@ -66,7 +66,12 @@ export class DashboardAnalyticsComponent implements OnInit {
       this.clearArray();
       this.showChartLine=true;
       this.dashboardService.getShareData(this.filterForm.controls['intervalControl'].value == "Günlük" ? 'TIME_SERIES_DAILY' : 'TIME_SERIES_INTRADAY', this.filterForm.controls['shareControl'].value, this.filterForm.controls['intervalControl'].value).then(res => {
-        this.periodList.push(res['Time Series (' + this.filterForm.controls['intervalControl'].value + ')']);
+        if(this.filterForm.controls['intervalControl'].value=="Günlük"){
+          this.periodList.push(res['Time Series (' + 'Daily' + ')']);
+        }
+        else{
+          this.periodList.push(res['Time Series (' + this.filterForm.controls['intervalControl'].value + ')']);
+        }
         for (let i in this.periodList[0]) {
           if (new Date(i) >= new Date(moment(this.filterForm.controls['startDateControl'].value).format('YYYY-MM-DD HH:mm:SS')) && new Date(moment(this.filterForm.controls['endDateControl'].value).format('YYYY-MM-DD HH:mm:SS')) >= new Date(i)) {
             this.filterPeriodList.push({...this.periodList[0][i],date:moment(i).format('MM/DD/YYYY')})
